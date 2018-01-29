@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {tap} from "rxjs/operators";
 
 @Injectable()
@@ -14,6 +14,14 @@ export class TableViewService {
       .pipe(
         tap(index => console.log(`index`, index.content))
       );
+  }
+
+  publish(body) {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'PRIVATE-TOKEN': `${environment.gitLabToken}` })
+    };
+
+    return this.http.put(`${environment.gitLabRepository}`, body, httpOptions);
   }
 
 }

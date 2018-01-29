@@ -5,6 +5,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://192.168.99.100:31313',
-  httpOptions: { withCredentials: true }
+  baseUrl: 'https://192.168.99.100:31614',
+  httpOptions: { withCredentials: true },
+  gitLabToken: 'xxx',
+  gitLabRepository: 'https://git.caruso-dataplace.com/api/v4/projects/60/repository/files/catalog%2Fcatalog.json?branch=master'
 };

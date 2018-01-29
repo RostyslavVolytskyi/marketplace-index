@@ -9,6 +9,8 @@ import {TableViewService} from "./table-view.service";
 export class TableViewComponent implements OnInit {
 
   marketplaceIndex: any;
+  commitMsg = 'default commit from code';
+  commitAuthor = 'Incognito';
 
   constructor(private tableViewService: TableViewService) { }
 
@@ -35,7 +37,11 @@ export class TableViewComponent implements OnInit {
   }
 
   publish() {
-    console.log('publish', this.marketplaceIndex);
+    this.tableViewService.publish({
+      "commit_message": `${this.commitMsg}`,
+      "author_name": `${this.commitAuthor}`,
+      "content": JSON.stringify(this.marketplaceIndex)})
+      .subscribe(res => console.log('res', res));
   }
 
 }
