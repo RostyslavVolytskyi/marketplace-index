@@ -21,4 +21,5 @@
 <input type="text" [(ngModel)]="commitMsg" id="commitName" required>
 <label for="commitName">Author of commit</label>
 <input type="text"[(ngModel)]="commitAuthor" required>
-<button (click)="publish()" class="publish">Publish</button>
+<button (click)="publish()" class="publish">Publish to GitLab</button>
+<button (click)="getGitMarketplaceIndex()" class="publish">Get from GitLab</button>

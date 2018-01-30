@@ -23,6 +23,11 @@ export class TableViewComponent implements OnInit {
       .subscribe(index => this.marketplaceIndex = index.content);
   }
 
+  getGitMarketplaceIndex() {
+    this.tableViewService.getGitMarketplaceIndex()
+      .subscribe(index => this.marketplaceIndex = index);
+  }
+
   addCategory() {
     let newCategory = {};
     let categoryKeys = Object.keys(this.marketplaceIndex[0]);
