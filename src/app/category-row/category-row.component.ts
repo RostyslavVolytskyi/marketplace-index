@@ -22,11 +22,6 @@ export class CategoryRowComponent implements OnInit {
   }
 
   deleteCategory(index: number) {
-    // this.tableViewService.getMarketplaceIndex()
-    //   .subscribe(index => {
-    //     console.log('deleteCategory', index);
-    //
-    //   });
     console.log(index);
   }
 
