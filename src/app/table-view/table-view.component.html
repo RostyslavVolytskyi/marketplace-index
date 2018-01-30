@@ -2,12 +2,16 @@
 
   <div *ngFor="let category of marketplaceIndex; let i = index">
     <span>{{i+1}}</span>
-    <category-row [item]="category"></category-row>
-    <button (click)="deleteItem(category, i)" class="delete">Delete</button>
+    <category-row [category]="category"></category-row>
+    <button (click)="expandChildPanel()" *ngIf="category.childCategories && category.childCategories.length" class="expand-panel"> {{expand ? '&#9660;' : '&#9654;'}} {{category.childCategories.length}} {{category.childCategories.length > 1 ? 'subcategories' : 'subcategory'}}</button>
+    <!--<button (click)="deleteItem(category, i)" class="delete">Delete Category</button>-->
 
-    <div *ngFor="let bundle of category.bundles; let i = index" class="bundles">
-      <span>{{i+1}}</span>
-      <bundle-row [item]="bundle"></bundle-row>
+    <div *ngIf="category.childCategories.length && expand" class="items-section">
+      <div *ngFor="let childCategory of category.childCategories; let i = index">
+        <span>{{i+1}}</span>
+        <category-row [category]="childCategory" class="inputs-row"></category-row>
+        <!--<button (click)="deleteChildCategory(childCategory, i)" class="delete">Delete SubCategory</button>-->
+      </div>
     </div>
   </div>
 

@@ -12,6 +12,7 @@ export class TableViewComponent implements OnInit {
   commitMsg = 'default commit message from code';
   commitAuthor = 'Incognito';
   showPublishedMsg = false;
+  expand = false;
 
   constructor(private tableViewService: TableViewService) { }
 
@@ -42,6 +43,11 @@ export class TableViewComponent implements OnInit {
     this.marketplaceIndex.splice(index, 1);
   }
 
+  // TODO: create delete child category
+  deleteChildCategory(item: any, index: number) {
+    console.log('delete child cat', item, index);
+  }
+
   publish() {
     this.tableViewService.publish({
       "commit_message": `${this.commitMsg}`,
@@ -51,6 +57,10 @@ export class TableViewComponent implements OnInit {
         this.showPublishedMsg = true;
         setTimeout(() => { this.showPublishedMsg = false; }, 1000);
       });
+  }
+
+  expandChildPanel() {
+    this.expand = !this.expand;
   }
 
 }

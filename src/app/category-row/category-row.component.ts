@@ -7,11 +7,16 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class CategoryRowComponent implements OnInit {
 
-  @Input() item: any;
+  @Input() category: any;
+  expand = false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  expandChildPanel() {
+    this.expand = !this.expand;
   }
 
 }

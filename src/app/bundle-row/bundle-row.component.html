@@ -1,4 +1,14 @@
-<input type="text" [(ngModel)]="item.name">
-<input type="text" [(ngModel)]="item.description">
-<input type="text" [(ngModel)]="item.vinSensitive">
-<input type="text" [(ngModel)]="item.id" disabled>
+<input type="text" [(ngModel)]="bundle.name">
+<input type="text" [(ngModel)]="bundle.description">
+<input type="text" [(ngModel)]="bundle.vinSensitive">
+<input type="text" [(ngModel)]="bundle.id" disabled>
+<button (click)="expandChildPanel()" *ngIf="bundle.items && bundle.items.length" class="expand-panel"> {{expand ? '&#9660;' : '&#9654;'}} {{bundle.items.length}} {{bundle.items.length > 1 ? 'items' : 'item'}}</button>
+
+<div *ngIf="bundle.items && bundle.items.length && expand" class="items-section">
+  <div *ngFor="let item of bundle.items; let i = index">
+    <span>{{i+1}}</span>
+    <item-row [item]="item"></item-row>
+  </div>
+</div>
+
+
