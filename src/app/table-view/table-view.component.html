@@ -2,7 +2,7 @@
 
   <div *ngFor="let category of marketplaceIndex; let i = index">
     <span>{{i+1}}</span>
-    <category-row [category]="category"></category-row>
+    <category-row [category]="category" [index]="i"></category-row>
     <button (click)="expandChildPanel()" *ngIf="category.childCategories && category.childCategories.length" class="expand-panel"> {{expand ? '&#9660;' : '&#9654;'}} {{category.childCategories.length}} {{category.childCategories.length > 1 ? 'subcategories' : 'subcategory'}}</button>
     <!--<button (click)="deleteItem(category, i)" class="delete">Delete Category</button>-->
 
@@ -10,7 +10,6 @@
       <div *ngFor="let childCategory of category.childCategories; let i = index">
         <span>{{i+1}}</span>
         <category-row [category]="childCategory" class="inputs-row"></category-row>
-        <!--<button (click)="deleteChildCategory(childCategory, i)" class="delete">Delete SubCategory</button>-->
       </div>
     </div>
   </div>
@@ -18,7 +17,7 @@
   <button (click)="addCategory()" class="add-category">Add category</button>
 <br>
 
-<div class="flex-column">
+<div class="flex-column commit-box">
   <label for="commitName">Commit message</label>
   <input type="text" [(ngModel)]="commitMsg" id="commitName" required>
   <label for="commitName">Author of commit</label>

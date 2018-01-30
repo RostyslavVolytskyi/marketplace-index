@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {tap} from "rxjs/operators";
+import {tap, map} from "rxjs/operators";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'PRIVATE-TOKEN': `${environment.gitLabToken}` })
@@ -11,12 +11,17 @@ const httpOptions = {
 @Injectable()
 export class TableViewService {
 
+  // marketPlaceIndex: any;
+
   constructor(private http: HttpClient) { }
 
   getMarketplaceIndex(): Observable<any> {
     return this.http.get<any>(`${environment.baseUrl}/marketplace/index?sort=name`, environment.httpOptions)
       .pipe(
-        tap(index => console.log(`index`, index.content))
+        map((res: any) => res.content),
+        tap(index => {
+          console.log(`index`, index)
+        })
       );
   }
 

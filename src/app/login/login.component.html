@@ -7,7 +7,7 @@
     <label for="password">Password</label>
     <input id="password" type="password" [(ngModel)]="password" name="password">
 
-    <button type="submit" (click)="login()">Login</button>
+    <button type="submit" (click)="login()" class="login-btn">Login</button>
   </form>
 </div>
 <div class="success-msg" *ngIf="successMsg">Successful login</div>

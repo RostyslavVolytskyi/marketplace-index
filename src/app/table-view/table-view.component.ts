@@ -22,7 +22,7 @@ export class TableViewComponent implements OnInit {
 
   getMarketplaceIndex() {
     this.tableViewService.getMarketplaceIndex()
-      .subscribe(index => this.marketplaceIndex = index.content);
+      .subscribe(index => this.marketplaceIndex = index);
   }
 
   getGitMarketplaceIndex() {
