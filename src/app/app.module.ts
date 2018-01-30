@@ -9,13 +9,19 @@ import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
 import {AuthService} from "./login/auth.service";
+import { CategoryRowComponent } from './category-row/category-row.component';
+import { BundleRowComponent } from './bundle-row/bundle-row.component';
+import { ItemRowComponent } from './item-row/item-row.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TableViewComponent,
-    LoginComponent
+    LoginComponent,
+    CategoryRowComponent,
+    BundleRowComponent,
+    ItemRowComponent
   ],
   imports: [
     BrowserModule,
