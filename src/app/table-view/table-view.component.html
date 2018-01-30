@@ -1,25 +1,29 @@
+<p *ngIf="showPublishedMsg" class="saved-to-gitlab-msg">Successfully saved to GitLab</p>
 <div>
   <div *ngFor="let category of marketplaceIndex; let i = index">
     <span>{{i+1}}</span>
     <input type="text" [(ngModel)]="category.name">
     <input type="text" [(ngModel)]="category.description">
-    <input type="text" [(ngModel)]="category.id">
+    <input type="text" [(ngModel)]="category.id" disabled>
     <button (click)="deleteItem(category, i)" class="delete">Delete</button>
 
     <div *ngFor="let bundle of category.bundles; let i = index" class="bundles">
       <span>{{i+1}}</span>
       <input type="text" [(ngModel)]="bundle.name">
       <input type="text" [(ngModel)]="bundle.description">
-      <input type="text" [(ngModel)]="bundle.id">
+      <input type="text" [(ngModel)]="bundle.id" disabled>
     </div>
   </div>
   <button (click)="addCategory()" class="add-category">Add category</button>
 </div>
 <br>
 
-<label for="commitName">Commit message</label>
-<input type="text" [(ngModel)]="commitMsg" id="commitName" required>
-<label for="commitName">Author of commit</label>
-<input type="text"[(ngModel)]="commitAuthor" required>
-<button (click)="publish()" class="publish">Publish to GitLab</button>
-<button (click)="getGitMarketplaceIndex()" class="publish">Get from GitLab</button>
+<div class="gitlab-section">
+  <label for="commitName">Commit message</label>
+  <input type="text" [(ngModel)]="commitMsg" id="commitName" required>
+  <label for="commitName">Author of commit</label>
+  <input type="text"[(ngModel)]="commitAuthor" required>
+  <button (click)="getGitMarketplaceIndex()" class="get-from-git">Get from GitLab</button>
+  <button (click)="publish()" class="publish">Publish to GitLab</button>
+</div>
+

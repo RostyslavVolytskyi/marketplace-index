@@ -2,6 +2,10 @@
   background-color: green;
 }
 
+.get-from-git {
+  background-color: blue;
+}
+
 .add-category {
   background-color: yellow;
 }
@@ -12,4 +16,14 @@
 
 .bundles {
   margin-left: 30px;
+}
+
+.saved-to-gitlab-msg {
+  color: green;
+}
+
+.gitlab-section {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
