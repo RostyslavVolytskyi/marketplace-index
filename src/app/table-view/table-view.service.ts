@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {tap, map, shareReplay, share} from "rxjs/operators";
+import {tap, map} from "rxjs/operators";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'PRIVATE-TOKEN': `${environment.gitLabToken}` })

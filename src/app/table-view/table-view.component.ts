@@ -1,33 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TableViewService} from "./table-view.service";
+import {Subscription} from "rxjs/Subscription";
+import {DataTransferService} from "../services/data-transfer.service";
 
 @Component({
   selector: 'table-view',
   templateUrl: './table-view.component.html',
   styleUrls: ['./table-view.component.scss']
 })
-export class TableViewComponent implements OnInit {
+export class TableViewComponent implements OnInit, OnDestroy {
 
   marketplaceIndex: any;
   commitMsg = 'default commit message from code';
   commitAuthor = 'Incognito';
   showPublishedMsg = false;
   expand = false;
+  marketPlaceIndexSubscription: Subscription;
 
-  constructor(private tableViewService: TableViewService) { }
+  constructor(private tableViewService: TableViewService, private dataTransferService: DataTransferService) { }
 
   ngOnInit() {
-    this.getMarketplaceIndex();
+    this.marketPlaceIndexSubscription = this.getMarketplaceIndex()
+      .subscribe(catalog => {
+        this.dataTransferService.changeData(catalog);
+        this.marketplaceIndex = catalog;
+      });
   }
 
+  ngOnDestroy() {
+    this.marketPlaceIndexSubscription.unsubscribe();
+  }
+
+  // Get index from backend service
   getMarketplaceIndex() {
-    this.tableViewService.getMarketplaceIndex()
-      .subscribe(index => this.marketplaceIndex = index);
+    return this.tableViewService.getMarketplaceIndex();
   }
 
+  // Get index from GitLab file
   getGitMarketplaceIndex() {
-    this.tableViewService.getGitMarketplaceIndex()
-      .subscribe(index => this.marketplaceIndex = index);
+    return this.tableViewService.getGitMarketplaceIndex();
+
   }
 
   addCategory() {
@@ -37,15 +49,6 @@ export class TableViewComponent implements OnInit {
       newCategory[key] = '';
     }
     this.marketplaceIndex.push(newCategory);
-  }
-
-  deleteItem(item: any, index: number) {
-    this.marketplaceIndex.splice(index, 1);
-  }
-
-  // TODO: create delete child category
-  deleteChildCategory(item: any, index: number) {
-    console.log('delete child cat', item, index);
   }
 
   publish() {

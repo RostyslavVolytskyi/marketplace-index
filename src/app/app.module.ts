@@ -12,6 +12,7 @@ import {AuthService} from "./login/auth.service";
 import { CategoryRowComponent } from './category-row/category-row.component';
 import { BundleRowComponent } from './bundle-row/bundle-row.component';
 import { ItemRowComponent } from './item-row/item-row.component';
+import { DataTransferService } from './services/data-transfer.service';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { ItemRowComponent } from './item-row/item-row.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [TableViewService, AuthService],
+  providers: [TableViewService, AuthService, DataTransferService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
