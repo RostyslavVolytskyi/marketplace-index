@@ -1,6 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TableViewService} from "../table-view/table-view.service";
-import {share, shareReplay} from "rxjs/operators";
 import {DataTransferService} from "../services/data-transfer.service";
 
 @Component({
@@ -11,9 +9,8 @@ import {DataTransferService} from "../services/data-transfer.service";
 export class CategoryRowComponent implements OnInit {
 
   @Input() category: any;
-  @Input() index: number;
+  @Input() categoryIndex: number;
   expand = false;
-  marketplaceIndex: any;
 
   constructor(private dataTransferService: DataTransferService) { }
 

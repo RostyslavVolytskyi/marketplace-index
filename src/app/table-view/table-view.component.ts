@@ -38,7 +38,11 @@ export class TableViewComponent implements OnInit, OnDestroy {
 
   // Get index from GitLab file
   getGitMarketplaceIndex() {
-    return this.tableViewService.getGitMarketplaceIndex();
+    return this.tableViewService.getGitMarketplaceIndex()
+      .subscribe(catalog => {
+        this.marketplaceIndex = catalog;
+        this.dataTransferService.changeData(catalog);
+      });
 
   }
 
@@ -52,6 +56,7 @@ export class TableViewComponent implements OnInit, OnDestroy {
   }
 
   publish() {
+    console.log('publish', this.marketplaceIndex);
     this.tableViewService.publish({
       "commit_message": `${this.commitMsg}`,
       "author_name": `${this.commitAuthor}`,

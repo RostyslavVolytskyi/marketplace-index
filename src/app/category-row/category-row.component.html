@@ -3,11 +3,12 @@
 <input type="text" [(ngModel)]="category.iconPath">
 <input type="text" [(ngModel)]="category.id" disabled>
 <button (click)="expandChildPanel()" *ngIf="category.bundles && category.bundles.length" class="expand-panel"> {{expand ? '&#9660;' : '&#9654;'}} {{ category.bundles.length}} {{category.bundles.length > 1 ? 'bundles' : 'bundle'}}</button>
-<button (click)="deleteCategory(index)" class="delete" *ngIf="!category.childCategories.length">Delete Category</button>
+<button (click)="deleteCategory(categoryIndex)" class="delete">Delete Category</button>
+<!--<button (click)="deleteSubCategory(index)" class="delete" *ngIf="category.childCategories.length">Delete SubCategory</button>-->
 
 <div *ngIf="category.bundles && category.bundles.length && expand" class="items-section">
   <div *ngFor="let bundle of category.bundles; let i = index">
     <span>{{i+1}}</span>
-    <bundle-row [bundle]="bundle"></bundle-row>
+    <bundle-row [bundle]="bundle" [bundleIndex]="i" [categoryIndex]="categoryIndex"></bundle-row>
   </div>
 </div>
