@@ -33,11 +33,18 @@ export class CategoryRowComponent implements OnInit {
     let newBundle = {};
     this.dataTransferService.currentSubject
       .subscribe(catalog => {
-        let bundleKeys = Object.keys(catalog[0].bundles[0]);
+        let bundleKeys = ['description', 'id', 'vinSensitive', 'name'];
         for (const key of bundleKeys) {
           newBundle[key] = key === 'id' ? UUID.UUID() : '';
         }
-        catalog[this.categoryIndex].bundles.push(newBundle);
+
+        // can be simply catalog[this.categoryIndex].bundles.push(newBundle), for now keep it like this
+        if(catalog[this.categoryIndex].bundles) {
+          catalog[this.categoryIndex].bundles.push(newBundle);
+        } else {
+          let bundles = catalog[this.categoryIndex].bundles = [];
+          bundles.push(newBundle);
+        }
       });
   }
 }

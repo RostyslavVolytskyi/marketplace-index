@@ -5,10 +5,10 @@
 <button (click)="expandChildPanel()" *ngIf="bundle.items && bundle.items.length" class="expand-panel"> {{expand ? '&#9660;' : '&#9654;'}} {{bundle.items.length}} {{bundle.items.length > 1 ? 'items' : 'item'}}</button>
 <button (click)="deleteBundle(bundleIndex)" class="delete">Delete Bundle</button>
 
+<button (click)="addItem()" class="add-item">Add item</button>
 <div *ngIf="bundle.items && bundle.items.length && expand" class="items-section">
   <div *ngFor="let item of bundle.items; let i = index">
     <span>{{i+1}}</span>
     <item-row [item]="item" [bundleIndex]="bundleIndex" [categoryIndex]="categoryIndex" [itemIndex]="i"></item-row>
   </div>
-  <button (click)="addItem()" class="add-item">Add item</button>
 </div>

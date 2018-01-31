@@ -24,7 +24,6 @@ export class BundleRowComponent implements OnInit {
   }
 
   deleteBundle(index: number) {
-    // console.log('deleteBundleindex', index, this.categoryIndex);
     this.dataTransferService.currentSubject
       .subscribe(catalog => {
         catalog[this.categoryIndex].bundles.splice(index, 1);
@@ -35,11 +34,17 @@ export class BundleRowComponent implements OnInit {
     let newItem = {};
     this.dataTransferService.currentSubject
       .subscribe(catalog => {
-        let bundleKeys = Object.keys(catalog[0].bundles[0].items[0]);
-        for (const key of bundleKeys) {
+        let itemKeys = ['description', 'id', 'technicalDescriptionUrl', 'name'];
+        for (const key of itemKeys) {
           newItem[key] = key === 'id' ? UUID.UUID() : '';
         }
-        catalog[this.categoryIndex].bundles[this.bundleIndex].items.push(newItem);
+
+        if(catalog[this.categoryIndex].bundles[this.bundleIndex].items) {
+          catalog[this.categoryIndex].bundles[this.bundleIndex].items.push(newItem);
+        } else {
+          let items = catalog[this.categoryIndex].bundles[this.bundleIndex].items = [];
+          items.push(newItem);
+        }
       });
   }
 }

@@ -6,11 +6,11 @@
 <button (click)="deleteCategory(categoryIndex)" class="delete">Delete Category</button>
 <!--<button (click)="deleteSubCategory(index)" class="delete" *ngIf="category.childCategories.length">Delete SubCategory</button>-->
 
+<button (click)="addBundle()" class="add-item">Add bundle</button>
 <div *ngIf="category.bundles && category.bundles.length && expand" class="items-section">
   <div *ngFor="let bundle of category.bundles; let i = index">
     <span>{{i+1}}</span>
     <bundle-row [bundle]="bundle" [bundleIndex]="i" [categoryIndex]="categoryIndex"></bundle-row>
   </div>
-  <button (click)="addBundle()" class="add-item">Add bundle</button>
 </div>
 

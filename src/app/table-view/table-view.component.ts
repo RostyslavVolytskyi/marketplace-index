@@ -49,11 +49,18 @@ export class TableViewComponent implements OnInit, OnDestroy {
 
   addCategory() {
     let newCategory = {};
-    let categoryKeys = Object.keys(this.marketplaceIndex[0]);
+    let categoryKeys = ['description', 'id', 'iconPath', 'name'];
     for (const key of categoryKeys) {
       newCategory[key] = key === 'id' ? UUID.UUID() : '';
     }
-    this.marketplaceIndex.push(newCategory);
+
+    if(this.marketplaceIndex) {
+      this.marketplaceIndex.push(newCategory);
+    } else {
+      this.marketplaceIndex = [];
+      this.marketplaceIndex.push(newCategory);
+    }
+
   }
 
   publish() {
