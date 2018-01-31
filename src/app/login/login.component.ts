@@ -10,23 +10,28 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
-  successMsg = false;
+  errorMsg = false;
 
   @Output() openTable = new EventEmitter<boolean>();
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    // if(this.authService.getUserFromStorage()){
+    //   this.successMsg = true;
+    //   this.openTable.emit(true);
+    // }
     //First shouild be login
-    this.openTable.emit(true);
+    // this.openTable.emit(true);
   }
 
   login(): any {
-    return this.authService.login({username: this.username, password: this.password})
-      .subscribe(user => {
-        this.successMsg = true;
-        this.openTable.emit(true);
-      });
+      return this.authService.login({username: this.username, password: this.password})
+        .subscribe(user => {
+          this.openTable.emit(true);
+        }, err => {
+          this.errorMsg = true;
+        });
   }
 
 }

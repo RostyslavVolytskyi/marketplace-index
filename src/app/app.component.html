@@ -4,7 +4,7 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<login (openTable)="openTable($event)"></login>
+<login (openTable)="openTable($event)" *ngIf="!showTable"></login>
 <br>
 <table-view *ngIf="showTable"></table-view>
 
