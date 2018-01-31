@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TableViewService} from "./table-view.service";
 import {Subscription} from "rxjs/Subscription";
 import {DataTransferService} from "../services/data-transfer.service";
+import {UUID} from 'angular2-uuid';
 
 @Component({
   selector: 'table-view',
@@ -50,7 +51,7 @@ export class TableViewComponent implements OnInit, OnDestroy {
     let newCategory = {};
     let categoryKeys = Object.keys(this.marketplaceIndex[0]);
     for (const key of categoryKeys) {
-      newCategory[key] = '';
+      newCategory[key] = key === 'id' ? UUID.UUID() : '';
     }
     this.marketplaceIndex.push(newCategory);
   }

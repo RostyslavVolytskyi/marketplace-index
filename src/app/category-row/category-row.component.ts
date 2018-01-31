@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DataTransferService} from "../services/data-transfer.service";
+import {UUID} from "angular2-uuid";
 
 @Component({
   selector: 'category-row',
@@ -15,7 +16,6 @@ export class CategoryRowComponent implements OnInit {
   constructor(private dataTransferService: DataTransferService) { }
 
   ngOnInit() {
-
   }
 
   expandChildPanel() {
@@ -35,7 +35,7 @@ export class CategoryRowComponent implements OnInit {
       .subscribe(catalog => {
         let bundleKeys = Object.keys(catalog[0].bundles[0]);
         for (const key of bundleKeys) {
-          newBundle[key] = '';
+          newBundle[key] = key === 'id' ? UUID.UUID() : '';
         }
         catalog[this.categoryIndex].bundles.push(newBundle);
       });

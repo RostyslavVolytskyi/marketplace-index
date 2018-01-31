@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DataTransferService} from "../services/data-transfer.service";
+import {UUID} from "angular2-uuid";
 
 @Component({
   selector: 'bundle-row',
@@ -34,9 +35,9 @@ export class BundleRowComponent implements OnInit {
     let newItem = {};
     this.dataTransferService.currentSubject
       .subscribe(catalog => {
-        let bundleKeys = Object.keys(catalog[0].bundles[0]);
+        let bundleKeys = Object.keys(catalog[0].bundles[0].items[0]);
         for (const key of bundleKeys) {
-          newItem[key] = '';
+          newItem[key] = key === 'id' ? UUID.UUID() : '';
         }
         catalog[this.categoryIndex].bundles[this.bundleIndex].items.push(newItem);
       });
