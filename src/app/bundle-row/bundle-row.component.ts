@@ -16,7 +16,6 @@ export class BundleRowComponent implements OnInit {
   constructor(private dataTransferService: DataTransferService ) { }
 
   ngOnInit() {
-    console.log()
   }
 
   expandChildPanel() {
@@ -31,4 +30,15 @@ export class BundleRowComponent implements OnInit {
       })
   }
 
+  addItem() {
+    let newItem = {};
+    this.dataTransferService.currentSubject
+      .subscribe(catalog => {
+        let bundleKeys = Object.keys(catalog[0].bundles[0]);
+        for (const key of bundleKeys) {
+          newItem[key] = '';
+        }
+        catalog[this.categoryIndex].bundles[this.bundleIndex].items.push(newItem);
+      });
+  }
 }

@@ -28,4 +28,16 @@ export class CategoryRowComponent implements OnInit {
         catalog.splice(index, 1);
       })
   }
+
+  addBundle() {
+    let newBundle = {};
+    this.dataTransferService.currentSubject
+      .subscribe(catalog => {
+        let bundleKeys = Object.keys(catalog[0].bundles[0]);
+        for (const key of bundleKeys) {
+          newBundle[key] = '';
+        }
+        catalog[this.categoryIndex].bundles.push(newBundle);
+      });
+  }
 }
